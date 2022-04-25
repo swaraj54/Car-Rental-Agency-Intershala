@@ -1,21 +1,21 @@
 const Car = require("../Model/Car-Model");
 
 const getAllCars = async (req,res,next)=>{
-    let cars;
+    let car;
     try{
-        cars = await Car.find(); 
+        car = await Car.find(); 
     } catch(err){
         console.log(err);
     }
-    if(!cars){
+    if(!car){
         return res.status(404).json({message: "Car not found"});
     }
-     return res.status(200).json({cars});
+     return res.status(200).json({car});
 }
 
 
 const getById = async (req,res,next)=>{
-    const id = req.params.id;
+    const id = (req.params.id).trim();
     let car;
     try{
         car = await Car.findById(id);
@@ -23,9 +23,9 @@ const getById = async (req,res,next)=>{
         console.log(err);
     } 
     if(!car){
-        res.status(404).json({message: "Car not found"});
+        return res.status(404).json({message: "Car not found"});
     }
-    res.status(200).json({book});
+    return res.status(200).json({car});
 }
 
 const addCar = async (req,res,next)=> {
@@ -48,7 +48,40 @@ const addCar = async (req,res,next)=> {
     }
     return res.status(201).json({car})
 }
+const updateCar = async (req,res,next) => {
+    const id = (req.params.id).trim();
+    const {model, number, seating, rent, image} = req.body;
+    let car;
+    try{
+        car = await Car.findByIdAndUpdate(id, {
+            model, number, seating, rent, image
+        })
+         await car.save();
+    } catch(err){
+        console.log(err)
+    }
+    if(!car){
+        return res.status(404).json({message: "Cant update Car"});
+     }
+     return res.status(200).json({car})
+};
+
+const deleteCar = async (req,res,next)=> {
+    const id = (req.params.id).trim();
+    let car ;
+    try{
+        car = await Car.findByIdAndRemove(id);
+    } catch(err){
+        console.log(err)
+    }
+    if(!car){
+        return res.status(404).json({message: "Cant delete Car"});
+     }
+     return res.status(200).json({message: "Prodcut Successfully Deleted"})
+}
 
 exports.getAllCars = getAllCars;
 exports.getById = getById;
 exports.addCar = addCar;
+exports.updateCar = updateCar;
+exports.deleteCar = deleteCar;

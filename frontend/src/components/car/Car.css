@@ -1,0 +1,49 @@
+.ul{
+
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-content:center;
+    flex-wrap: wrap;
+}
+
+.li{
+    padding:10px;
+    width: 250px;
+    max-width:250px;
+    max-height: 400px;
+}
+
+.card{
+    width: 100%;
+    height:100%;
+    box-shadow: 5px 5px 10px #ccc ;
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin-top: 30px;
+}
+.card >img {
+    width:100%;
+    height:50%;
+}
+.card article{
+    padding: 5px;
+}
+.card h3{
+    padding:4px;
+}
+.card p{
+    padding:3px;
+}
+
+.wel{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    margin-top: 100px;
+}
+.wel Button {
+    margin-top: 30px;
+}
