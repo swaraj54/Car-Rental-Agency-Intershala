@@ -11,11 +11,9 @@ const Car = (props) => {
     
     const deleteHandler = async () => {
       await axios.delete(`http://localhost:2323/cars/${_id}`)
-      .then((res)=> res.data)
-    }
-    const dele = () => {
-      alert("Car Deleted" )
-      deleteHandler().then(()=> history("/"))
+      .then(res=> res.data).then(()=>  alert("Car deleted"))
+      .then(()=>  history("/add"))
+    
     }
     const sendRequest = async () => {
       await axios.post(`http://localhost:2323/cartproducts`, {
@@ -39,7 +37,7 @@ const Car = (props) => {
         <article>Rent per Day: <b>{rent}Rs.</b></article>
 
         {props.props.user && props.props.user._id ? null : <Button variant="contained" LinkComponent={Link} to={`./${_id}`} sx={{mt:0,height:"20px"}}>Update</Button>}
-        {props.props.user && props.props.user._id ? null : <Button variant="contained" onClick={dele()} sx={{mt:0.5,height:"20px"}}>Delete</Button>}
+        {props.props.user && props.props.user._id ? null : <Button variant="contained" onClick={ deleteHandler } sx={{mt:0.5,height:"20px"}}>Delete</Button>}
         {props.props.user && props.props.user._id ? <Button onClick={()=> handleSend() }  variant="contained"  sx={{mt:0.5, height:"20px"}} >Add to Cart</Button> : null}
     </div>
   )
