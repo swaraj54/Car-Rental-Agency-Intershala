@@ -3,6 +3,7 @@ const Model = require("../Model/Model");
 
 User = Model.User;
 sellUser = Model.sellUser;
+
 const login = async (req,res)=>{
     const { mail, password} = req.body;
     User.findOne({mail:mail}, (err,user)=>{

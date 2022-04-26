@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import {useParams,useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {Box, FormLabel, TextField,Button,Checkbox,FormControlLabel, Typography } from '@mui/material';
+import {Box, FormLabel, TextField,Button, } from '@mui/material';
 
 const CarDetail = () => {
     const [inputs, setInputs] = useState({});
@@ -26,7 +26,7 @@ const CarDetail = () => {
     } 
     const handleSubmit = (e) => {
         e.preventDefault();
-        sendRequest().then(()=> history("/cars"))
+        sendRequest().then(()=> alert("Car Added")).then(()=> history("/cars"))
     }
     const handleChange = (e) => {
         setInputs((prevState)=>({

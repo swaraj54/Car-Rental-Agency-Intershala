@@ -44,6 +44,45 @@
     text-align: center;
     margin-top: 100px;
 }
+.well{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
 .wel Button {
     margin-top: 30px;
+}
+
+.log {
+    display:flex;
+    flex-direction: row;
+}
+
+.log > div {
+    
+    margin:auto;
+        width: 200px;
+        height: 400px;
+        text-align: center;
+        flex: 1;
+        margin-top: 70px;
+        border: 1px solid red;
+        margin-left: 100px;
+        margin-right: 100px;
+        border: 1px solid;
+        padding: 10px;
+        box-shadow: 5px 10px 18px #888888;
+        background-color: #1976d2;
+        color: white;
+}
+.log input {
+    width:50%;
+    height:35px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.log button {
+    width: 30%;
+    height:40px;
+    font-size: 20px;
 }

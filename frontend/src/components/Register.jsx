@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../components/car/Car.css';
 
 const Register = () => {
   const history = useNavigate();
@@ -54,7 +55,7 @@ if(sname && smail && spassword && (spassword===srepassword)){
 
 }
   return (
-    <div>
+    <div className='log'>
       <div>
         <h1>Register as Buyer</h1>
         <input type="text" name="name" value={user.name} onChange={handlechange} placeholder="Name.."  />

@@ -12,9 +12,24 @@ const Car = (props) => {
     const deleteHandler = async () => {
       await axios.delete(`http://localhost:2323/cars/${_id}`)
       .then((res)=> res.data)
-      .then(()=> alert("Car Deleted"))
-      .then(()=> history("/"))
-  }
+    }
+    const dele = () => {
+      alert("Car Deleted" )
+      deleteHandler().then(()=> history("/"))
+    }
+    const sendRequest = async () => {
+      await axios.post(`http://localhost:2323/cartproducts`, {
+        model:String(model),
+        number:String(number),
+        seating:String(seating),
+        rent:Number(rent),
+        image:String(image),
+      }).then(res=> res.data);
+    } 
+      const handleSend = () => {
+          alert("Car Successfully Booked" )
+          sendRequest().then(()=> history("/cart"))
+      }
   return (
     <div className="card">
         <img src={image} />
@@ -24,8 +39,8 @@ const Car = (props) => {
         <article>Rent per Day: <b>{rent}Rs.</b></article>
 
         {props.props.user && props.props.user._id ? null : <Button variant="contained" LinkComponent={Link} to={`./${_id}`} sx={{mt:0,height:"20px"}}>Update</Button>}
-        {props.props.user && props.props.user._id ? null : <Button variant="contained" onClick={deleteHandler} sx={{mt:0.5,height:"20px"}}>Delete</Button>}
-        {props.props.user && props.props.user._id ? <Button variant="contained" sx={{mt:0.5, height:"20px"}} >Add to Cart</Button> : null}
+        {props.props.user && props.props.user._id ? null : <Button variant="contained" onClick={dele()} sx={{mt:0.5,height:"20px"}}>Delete</Button>}
+        {props.props.user && props.props.user._id ? <Button onClick={()=> handleSend() }  variant="contained"  sx={{mt:0.5, height:"20px"}} >Add to Cart</Button> : null}
     </div>
   )
 }
